@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../node_modules/jQuery/tmp/jquery.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
+  <script src="../node_modules/@tinymce/tinymce-vue/lib/browser/tinymce-vue.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="panel panel-primary" id="app">
+    <div class="panel-heading">
+      <h3 class="panel-title">添加文章</h3>
+    </div>
+
+    <div class="panel-body form-inline">
+
+      <label>
+        title:
+        <input type="text" class="form-control" v-model="title" />
+      </label>
+
+    </div>
+    <div>
+      <tinymce-editor api-key="API_KEY" :init="{plugins: 'wordcount',height: '500px'}" v-model="content">
+      </tinymce-editor>
+    </div>
+    <!-- <div style="margin-left: 20px" > -->
+    <span v-for="(item,i) in label"><input type="checkbox" name="label" :value="item.name"
+        v-on:click="alert(i)">{{item.name}}</span>
+
+    <!-- </div> -->
+    <br>
+    <input type="button" class="btn btn-primary" value="添加" v-on:click="add()" />
+  </div>
+  <script>
+    // import { Toast } from 'mint-ui';
+    var app = new Vue({
+      el: '#app',
+      data: {
+        title: '',
+        content: '',
+        label: [
+          { name: 'javascript', flag: false },
+          { name: 'Vue', flag: false },
+          { name: 'Webpack', flag: false },
+          { name: 'css', flag: false },
+          { name: 'HTML', flag: false },
+          { name: 'Node', flag: false },
+        ]
+      },
+      components: {
+        'tinymce-editor': Editor // <- Important part
+      },
+      methods: {
+        add() {
+          let tag = [];
+          this.label.forEach(element => {
+            if (element.flag) {
+              tag.push(element.name);
+            }
+          });
+          this.$http.post('http://127.0.0.1:3000/adddata', {
+            title: this.title,
+            content: this.content,
+            tag: tag
+          }, {
+              crossOrigin: true,
+              OK: true
+            }).then(response => {
+              if (response.body.err_code === 0) {
+                alert(response.body.message);
+              } else {
+                alert(response.body.message);
+              }
+            })
+        },
+        alert(i) {
+          this.label[i].flag = !this.label[i].flag;
+        }
+
+      }
+    })
+  </script>
+</body>
+
+</html>
