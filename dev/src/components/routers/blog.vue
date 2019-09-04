@@ -70,7 +70,6 @@
 
 <script>
     import { Toast } from 'mint-ui';
-
     export default {
         mounted() {
 
@@ -97,7 +96,7 @@
         },
         methods: {
             getdata() {
-                this.$http.get("http://127.0.0.1:3000/getArticleTitle")
+                this.$http.get(this.GLOBAL.serverSrc + this.GLOBAL.serverPort + "/getArticleTitle")
                     .then(response => {
                         if (response.body.err_code === 0) {
                             this.list = response.body.message;
@@ -115,7 +114,7 @@
                     })
             },
             getdataByTagName(tagname) {
-                this.$http.get("http://127.0.0.1:3000/getArticleTitleByTag?tagname=" + tagname)
+                this.$http.get(this.GLOBAL.serverSrc + this.GLOBAL.serverPort + "/getArticleTitleByTag?tagname=" + tagname)
                     .then(response => {
                         console.log(response);
                         if (response.body.err_code === 0) {

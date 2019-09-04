@@ -5,7 +5,7 @@ const sql = require("../../api/sql.js");
 
 const express = require("express");
 const router = express.Router();
-let basicname = "http://127.0.0.1:3000/public/img/pinglun";
+let basicname = "http://127.0.0.1:3000/public/img/pinglun/";
 let pathname = [
     "egg.jpeg",
     "fish.jpeg",

@@ -7,7 +7,7 @@
                 v-model="content" required></textarea>
             <div class="item name">
                 <span class="item-tip">昵称:</span>
-                <input type="text" placeholder="昵称会被公开显示" maxlength="20" class="input-clear item-input" v-model="name" required
+                <input type="text" placeholder="昵称会被公开显示" maxlength="20" class="input-clear item-input" v-model="name" required >
             </div>
         </div>
         <input type="submit" class="btn-clear submit" value="发表评论" v-on:click.prevent="submitCommit">
@@ -25,7 +25,7 @@
         },
         methods: {
             submitCommit(){
-                this.$http.post("http://127.0.0.1:3000/pushComment",{
+                this.$http.post(this.GLOBAL.serverSrc + this.GLOBAL.serverPort + "/pushComment",{
                     id: this.$route.query.id,
                     name: this.name,
                     content: this.content,

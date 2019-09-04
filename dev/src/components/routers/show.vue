@@ -60,7 +60,7 @@
                 this.heightObj.height = document.documentElement.clientHeight - 1 + 'px';
             },
             getAllMessage() {
-                let urlname = "http://127.0.0.1:3000/getAllMessage?id=" + this.$route.query.id;
+                let urlname = this.GLOBAL.serverSrc + this.GLOBAL.serverPort + "/getAllMessage?id=" + this.$route.query.id;
                 this.$http.get(urlname)
                     .then(response => {
                         console.log(response)

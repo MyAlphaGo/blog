@@ -37,7 +37,7 @@
         },
         methods: {
             getdata(){
-                this.$http.get("http://127.0.0.1:3000/pullComment?id=" + this.$route.query.id)
+                this.$http.get(this.GLOBAL.serverSrc + this.GLOBAL.serverPort + "/pullComment?id=" + this.$route.query.id)
                 .then(res=>{
                     let data = res.body;
                     if(data.err_code === 0){

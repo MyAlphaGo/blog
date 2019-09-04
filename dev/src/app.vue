@@ -1,36 +1,15 @@
 <template>
     <div class="container">
-        <!-- <div class="container-fluid">
-            <div class="container logo">
-                <h1>AlphaGo</h1>
-                <h3>曹林的个人博客</h3>
-            </div>
-            <div class="container navdome">
-                <ul class="nav nav-tabs">
-                    <li role="presentation" class="active">
-                        <router-link to="/home">Home</router-link>
-                    </li>
-                    <li role="presentation">
-                        <router-link to="/archiving">Archiving</router-link>
-                    </li>
-                    <li role="presentation">
-                        <router-link to="/example">example</router-link>
-                    </li>
-                    <li role="presentation">
-                        <router-link to="/me">me</router-link>
-                    </li>
-                    <li role="presentation" class="navbar-right">
-                        <router-link to="/me" class="mui-icon mui-icon-search"></router-link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <router-view></router-view> -->
-        <!-- <div :class="[in[ent],animated]"> -->
 
         <transition>
             <router-view></router-view>
         </transition>
+
+        <div class="home-icon">
+            <a href="/">
+                <span class="mui-icon mui-icon-home"></span>
+            </a>
+        </div>
 
         <!-- </div> -->
 
@@ -43,21 +22,13 @@
     export default {
         data() {
             return {
-                ent: 0,
-                animated: 'animated',
-                all: [],
-                out: ["bounceOut", "rotateOut", "zoomOut"],
-                in: ["bounceIn", "rotateIn", "zoomIn"]
+                address: "http://127.0.0.1:",
+                port: "3000"
             }
         },
         methods: {
 
         },
-        watch: {
-            "$route.path": function (newval, oldval) {
-                this.ent = Math.floor(Math.random() * 3);
-            }
-        }
     }
 </script>
 
@@ -101,5 +72,16 @@
     }
     a {
         text-decoration: none !important;
+    }
+
+    .home-icon {
+        position: fixed;
+        top: 50px;
+        left: 50px;
+        color: #000;
+        span {
+            font-size: 40px;
+        }
+        /* border: 1px solid #fff; */
     }
 </style>

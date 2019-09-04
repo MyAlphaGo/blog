@@ -8,11 +8,16 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
 import router from './router.js'
 import app from './app.vue'
+import global_ from './components/global.vue'//引用文件
+
+Vue.prototype.GLOBAL = global_//挂载到Vue实例上面
 
 // 导入mui样式和拓展样式
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 import './lib/mui/fonts/mui-icons-extra.ttf'
+
+
 
 // 导入mint-ui 
 
