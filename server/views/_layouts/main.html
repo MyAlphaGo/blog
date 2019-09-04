@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{block 'title'}}默认标题{{/block}}</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        ul {
+            list-style: none;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+
+        .left {
+            height: 500px;
+            width: 200px;
+            position: absolute;
+            top: 100px;
+            left: 10%;
+        }
+
+        .main {
+            height: 1000px;
+            width: 800px;
+            margin-left: calc(10% + 250px)
+        }
+    </style>
+    {{block 'head'}}{{/block}}
+</head>
+
+<body>
+    {{include '../_partials/header.html'}}
+    {{block 'body'}}
+    <div class="left">
+        <ul>
+            <li><a href="/home/add">添加文章</a></li>
+            <li><a href="/home/show">全部文章</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        {{block 'main'}}{{/block}}
+    </div>
+    {{/block}}
+    {{include '../_partials/footer.html'}}
+
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    {{block 'script'}}{{/block}}
+</body>
+
+</html>

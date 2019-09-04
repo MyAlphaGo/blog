@@ -4,10 +4,10 @@
         <div class="msg">
             <span class="item-tip">说点什么吧</span>
             <textarea placeholder="Say something ..." maxlength="200" class="input-clear item-input"
-                v-model="content"></textarea>
+                v-model="content" required></textarea>
             <div class="item name">
                 <span class="item-tip">昵称:</span>
-                <input type="text" placeholder="昵称会被公开显示" maxlength="20" class="input-clear item-input" v-model="name">
+                <input type="text" placeholder="昵称会被公开显示" maxlength="20" class="input-clear item-input" v-model="name" required
             </div>
         </div>
         <input type="submit" class="btn-clear submit" value="发表评论" v-on:click.prevent="submitCommit">

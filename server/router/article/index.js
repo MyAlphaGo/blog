@@ -17,7 +17,7 @@ router.post("/adddata", (req, res) => {
     //写入文件操作
     let pathname = data.title + ".txt";
     sql.link();
-    sql.addData("article", null, data.title, 'zuozhe', pathname, 0, datetime, tagdemo)
+    sql.addData("article", null, data.title, req.session.user.name, pathname, 0, datetime, tagdemo)
         .then(success => {
             return sql.addLabel(data.tag, datetime, tagdemo)
         })

@@ -1,3 +1,4 @@
+
 const mysql = require("mysql");
 
 
@@ -151,6 +152,30 @@ exports.finds = (tablename, filed, ...values) => {
         }
         statements += ")";
         connection.query(statements, (error, results, fidlds) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        })
+    })
+}
+
+exports.findUser = (email, password) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`select * from users where email="${email}" and password="${password}"`, (error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        })
+    })
+}
+
+exports.delete = (tablename,filed,value)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`delete from ${tablename} where ${filed}="${value}"`, (error, results, fields) => {
             if (error) {
                 reject(error);
             } else {

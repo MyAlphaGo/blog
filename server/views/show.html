@@ -1,0 +1,33 @@
+{{extend './_layouts/main.html'}}
+
+{{block 'title'}}{{'blog-添加文章'}}{{/block}}
+{{block 'head'}}
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
+<script src="../node_modules/@tinymce/tinymce-vue/lib/browser/tinymce-vue.min.js"></script>
+{{/block}}
+
+{{block 'main'}}
+<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>title</th>
+        <th>author</th>
+        <th>click</th>
+        <th>options</th>
+    </tr>
+    {{ each article }}
+    <tr>
+        <td>{{ $value.articleID }}</td>
+        <td>{{ $value.articleTitle }}</td>
+        <td>{{ $value.articleAuthor }}</td>
+        <td>{{ $value.articleClick }}</td>
+        <td>
+            <a href="/delete?id={{ $value.articleID }}&content={{ $value.articleContent}}">删除</a>
+        </td>
+    </tr>
+    {{ /each }}
+</table>
+{{/block}}
+{{block 'script'}}
+{{/block}}
