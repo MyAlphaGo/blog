@@ -79,7 +79,6 @@
         destroyed() {
             window.removeEventListener('resize', this.getHeight)
         }
-
     }
 </script>
 
@@ -89,24 +88,14 @@
         .container {
             width: 100%;
             min-height: 550px;
-            background-color: pink !important;
-        }
-    }
-
-    @media only screen and (min-width: 768px) {
-        .container {
-            margin: 0 auto;
-            padding: 0;
-            margin-top: 80px;
-            width: 100%;
         }
 
         .main {
             /* width: 100%; */
             max-width: 1000px;
             margin: 0 auto;
-            background-image: url(/src/image/note-bg.jpg);
             padding: 10px;
+            background-color: #fafbf6;
         }
 
         /* 子组件控制区域样式 */
@@ -133,6 +122,94 @@
                 font-style: italic;
             }
         }
+
+        .main {
+            .article-nums {
+                line-height: 40px;
+                font-size: 14px;
+                color: #555;
+            }
+
+            .content {
+                padding: 30px 1px;
+                border: 1px dashed #c9c9c7;
+
+                .title {
+                    text-align: center;
+                    font-size: 2em;
+                    font-weight: 700;
+                }
+
+                h1 {
+                    margin-bottom: 50px;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .container {
+            margin: 0 auto;
+            padding: 0;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        .main {
+            /* width: 100%; */
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #fafbf6;
+        }
+
+        /* 子组件控制区域样式 */
+        .com {
+            margin: 0 auto;
+            margin-top: 60px;
+            max-width: 600px;
+        }
+
+        /* 底部样式 */
+        .floor {
+            padding: 20px 0;
+            text-align: center;
+
+            .visters {
+                font-size: 14px;
+                color: #c1866a;
+            }
+
+            .slogen {
+                font-size: 20px;
+                color: #c1866a;
+                font-family: Georgia;
+                font-style: italic;
+            }
+        }
+
+        .main {
+            .article-nums {
+                line-height: 40px;
+                font-size: 14px;
+                color: #555;
+            }
+
+            .content {
+                padding: 30px 60px;
+                border: 1px dashed #c9c9c7;
+
+                .title {
+                    text-align: center;
+                    font-size: 2em;
+                    font-weight: 700;
+                }
+
+                h1 {
+                    margin-bottom: 50px;
+                }
+            }
+        }
     }
 
     #back {
@@ -144,6 +221,7 @@
         a {
             color: #bba477;
         }
+
         .box {
             display: inline-block;
             width: 26px;
@@ -156,29 +234,6 @@
                 margin-top: 3px;
                 font-size: 15px;
 
-            }
-        }
-    }
-
-    .main {
-        .article-nums {
-            line-height: 40px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .content {
-            padding: 30px 60px;
-            border: 1px dashed #c9c9c7;
-
-            .title {
-                text-align: center;
-                font-size: 2em;
-                font-weight: 700;
-            }
-
-            h1 {
-                margin-bottom: 50px;
             }
         }
     }

@@ -1,15 +1,15 @@
 <template>
-    <div class="container">
+    <div>
 
         <transition>
             <router-view></router-view>
         </transition>
 
-        <div class="home-icon">
+        <!-- <div class="home-icon">
             <a href="/">
                 <span class="mui-icon mui-icon-home"></span>
             </a>
-        </div>
+        </div> -->
 
         <!-- </div> -->
 
@@ -22,8 +22,6 @@
     export default {
         data() {
             return {
-                address: "http://127.0.0.1:",
-                port: "3000"
             }
         },
         methods: {

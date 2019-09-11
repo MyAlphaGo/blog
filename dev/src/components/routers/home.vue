@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <div class="home" style="width: 740px">
-            <div class="col-left fl">
+    <div class="container ">
+        <div class="home clearfix">
+            <div class="col-left">
                 <div class="home-main-box" v-for='(item, i) in listLeft' :key="i" :style="item.bgcolor">
                     <router-link :to="item.url">
                         <!-- 图片 -->
@@ -20,7 +20,7 @@
                     </router-link>
                 </div>
             </div>
-            <div class="col-right fr">
+            <div class="col-right">
                 <div class="home-main-box" v-for='(item, i) in listRighht' :key="i" :style="item.bgcolor">
                     <router-link :to="item.url">
                         <!-- 图片 -->
@@ -49,14 +49,14 @@
             return {
                 listLeft: [
                     {
-                        img: './src/image/blog.4b8a8c6.jpeg',
+                        img: this.GLOBAL.serverSrc + this.GLOBAL.serverPort + '/public/img/blog.jpeg',
                         icon: 'mui-icon mui-icon-compose',
                         text: 'Blog',
                         bgcolor: { "background-color": 'rgb(217,135,25)' },
                         url: '/blog'
                     },
                     {
-                        img: './src/image/blog.4b8a8c6.jpeg',
+                        img: this.GLOBAL.serverSrc + this.GLOBAL.serverPort + '/public/img/blog.jpeg',
                         icon: 'mui-icon mui-icon-chat',
                         text: 'Message',
                         bgcolor: { "background-color": 'rgb(64, 158, 255)' },
@@ -66,14 +66,14 @@
                 ],
                 listRighht: [
                     {
-                        img: './src/image/blog.4b8a8c6.jpeg',
+                        img: this.GLOBAL.serverSrc + this.GLOBAL.serverPort + '/public/img/blog.jpeg',
                         icon: 'mui-icon-extra mui-icon-extra-dictionary',
                         text: 'Arichiving',
                         bgcolor: { "background-color": 'rgb(255, 127, 0)' },
                         url: '/arichiving'
                     },
                     {
-                        img: './src/image/blog.4b8a8c6.jpeg',
+                        img: this.GLOBAL.serverSrc + this.GLOBAL.serverPort + '/public/img/me.jpg',
                         icon: 'mui-icon mui-icon-person-filled',
                         text: 'Me',
                         bgcolor: { "background-color": 'rgb(120, 109, 93)' },
@@ -89,25 +89,64 @@
 </script>
 
 <style scoped lang="scss">
-    .home {
-        margin: 0 auto;
+    .clearfix:after {
+        /*伪元素是行内元素 正常浏览器清除浮动方法*/
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
     }
 
-    .fl {
-        float: left;
+    .clearfix {
+        *zoom: 1;
+        /*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
     }
 
-    .fr {
-        float: right;
+
+
+    /* 手机样式 */
+    @media only screen and (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding: 0;
+        }
+
+        .col-left {
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        .col-right {
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        .home {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+
     }
 
-    .col-left {
-        width: 350px;
-    }
+    /* pc样式 */
+    @media only screen and (min-width: 768px) {
+        .home {
+            margin: 0 auto;
+            width: 750px;
+        }
 
-    .col-right {
-        width: 350px;
-        padding-top: 200px;
+        .col-left {
+            width: 350px;
+            float: left;
+        }
+
+        .col-right {
+            width: 350px;
+            padding-top: 200px;
+            float: right;
+        }
     }
 
     .home-main-box {
@@ -160,7 +199,7 @@
                 font-size: 85px;
                 color: hsla(40, 33%, 60%, .99);
             }
-            
+
         }
 
         .intro {
@@ -176,6 +215,7 @@
             font-family: lucida grande, lucida sans unicode, lucida, helvetica, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
         }
     }
+
     .home-main-box:hover {
         .post-icon span {
             font-size: 95px;

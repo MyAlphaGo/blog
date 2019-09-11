@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="blog">
-            <!-- 导航栏 -->
+            <!-- pc导航栏 -->
             <div class="nav-left">
                 <ul>
                     <li>
@@ -23,6 +23,18 @@
                             @click="getdataByTagName(list_1abel[5].text)">{{list_1abel[5].text}}</span>
                     </li>
                 </ul>
+            </div>
+            <!-- 手机导航栏 -->
+            <div class="nav-left-phone">
+                <div class="nav-all">
+                    <a href="/">
+                        <span class="mui-icon mui-icon-home"></span>
+                    </a>
+
+                </div>
+                <span>博客列表</span>
+                <div class="tag mui-icon mui-icon-list" @click="promp()"></div>
+                <div class="hiddendemo"></div>
             </div>
             <!-- 主体内容 -->
             <!-- <div class="main"> -->
@@ -79,7 +91,7 @@
         },
         data() {
             return {
-                flag: true,
+                flag: false,
                 list_1abel: [
                     { bgc: { 'background-color': '#87ceeb' }, text: 'javascript' },
                     { bgc: { 'background-color': '#db5640' }, text: 'Vue' },
@@ -145,24 +157,19 @@
                     this.list[i].tags = newlabel;
                     newlabel = [];
                 }
+            },
+            promp() {
+                Toast({
+                    message: "暂时还没有做 o(^_^)o",
+                    position: 'top',
+                    duration: 2000
+                })
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    /* from {}
-
-    to {
-        -webkit-transform-origin: center;
-        transform-origin: center;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    } */
-
-    /* 列表动画 */
-
     .v-enter,
     .v-leave-to {
         -webkit-transform-origin: center;
@@ -198,29 +205,163 @@
 
     /* 移动端样式 */
     @media only screen and (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding: 0;
+        }
+
         .blog {
             max-width: 800px;
             min-height: 555px;
             padding: 0 .1rem;
 
+            /* pc导航栏样式 */
             .nav-left {
                 display: none;
             }
 
+            /* 手机导航栏样式 */
+            .nav-left-phone {
+                width: 100%;
+                height: 80px;
+                background-color: #fff;
+                text-align: center;
+                position: fixed;
+                top: 0;
+
+                .nav-all {
+                    line-height: 80px;
+                    color: #c1866a;
+                    position: absolute;
+                    left: 10px;
+
+                    span {
+                        font-size: 30px;
+                    }
+                }
+
+                span {
+                    line-height: 80px;
+                    color: #c1866a;
+                    font-weight: 700;
+                }
+
+                .tag {
+                    position: absolute;
+                    right: 10px;
+                    line-height: 80px;
+                    color: #c1866a;
+                    font-size: 45px;
+                }
+
+
+            }
+
+
+
             .main {
                 width: 100%;
                 min-height: 555px;
+                margin-top: 80px;
+            }
+
+            section {
+                margin: 40px auto;
+                width: 95%;
+                padding: 10px;
+                background-color: #fafbf6;
+            }
+
+            .box {
+                width: 100%;
+                border: 1px dashed #c9c9c9;
+                padding: 30px 20px;
+
+                a:hover {
+                    text-decoration: none;
+                }
+
+                a {
+                    color: #f00;
+                }
+
+                h2 {
+                    margin-top: 33px;
+                    text-align: center;
+                    color: #f00;
+                    font-size: 25px;
+                    line-height: 30px;
+                    margin-bottom: 10px;
+                }
+
+                time {
+                    display: block;
+                    text-align: center;
+                    color: #b2b2ae;
+                    font-size: 14px;
+                    margin-bottom: 22px;
+                    line-height: 19px;
+                }
+
+                .content {
+                    a {
+                        color: #b2b2ae;
+                    }
+                }
+
+                .reply {
+                    margin: 20px 0;
+                    text-align: center;
+
+                    span {
+                        font-size: 3.0em;
+                        color: #999;
+                    }
+
+                    .text {
+                        margin-top: -30px;
+                        font-weight: 700;
+                        font-size: 15px;
+                    }
+
+                    span:hover {
+                        color: #f00;
+                    }
+                }
+
+                ul {
+                    padding: 0px;
+                    margin-bottom: 50px;
+
+                    li {
+                        margin-right: 10px;
+
+                        float: left;
+                    }
+
+                    a:hover {
+                        text-decoration: none;
+                    }
+                }
+
             }
         }
     }
 
     /* pc端样式 */
     @media only screen and (min-width: 768px) {
+
         .blog {
             width: 800px;
             min-height: 650px;
             margin: 0 auto;
 
+            /* 手机导航栏样式 */
+            .nav-left-phone {
+                display: none;
+            }
+
+            /* pc导航栏样式 */
             .nav-left {
                 width: 200px;
                 min-height: 650px;
@@ -253,7 +394,7 @@
                 margin: 40px 0;
                 width: 100%;
                 padding: 10px;
-                background-image: url(/src/image/note-bg.jpg);
+                background-color: #fafbf6;
             }
 
             .box {
