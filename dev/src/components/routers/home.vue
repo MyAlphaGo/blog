@@ -124,6 +124,7 @@
 
         .home {
             margin: 0 auto;
+            margin-top: 30px;
             width: 100%;
         }
 
@@ -170,7 +171,7 @@
         }
 
         .post-icon {
-            z-index: 1;
+            /* z-index: 1; */
             width: 140px;
             height: 140px;
             background: #fff;

@@ -5,13 +5,13 @@ const express = require("express");
 const router = express.Router();
 
 // 防止未登录就访问后台管理系统
-router.use("*", (req, res, next) => {
-    if (req.session.user) {
-        next();
-    } else {
-        res.redirect("/login");
-    }
-})
+// router.use("*", (req, res, next) => {
+//     if (req.session.user) {
+//         next();
+//     } else {
+//         res.redirect("/login");
+//     }
+// })
 
 // 让 / 重定向
 router.get("/", (req, res) => {
@@ -28,6 +28,7 @@ router.get("/home", (req, res) => {
 // 添加文章
 router.get("/home/add", (req, res) => {
     res.render("add.html", {
+        user: req.session.user
     })
 })
 
@@ -37,7 +38,8 @@ router.get("/home/show", (req, res, next) => {
     sql.findCols("article", "articleID", "articleTitle", "articleAuthor", "articleClick", "articleContent")
         .then(data => {
             res.render("show.html", {
-                article: data
+                article: data,
+                user: req.session.user
             })
             sql.close();
         })

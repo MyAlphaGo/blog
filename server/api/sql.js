@@ -161,6 +161,11 @@ exports.finds = (tablename, filed, ...values) => {
     })
 }
 
+/**
+ * @description 登录验证
+ * @param {*} email 邮箱
+ * @param {*} password 密码
+ */
 exports.findUser = (email, password) => {
     return new Promise((resolve, reject) => {
         connection.query(`select * from users where email="${email}" and password="${password}"`, (error, results, fields) => {
@@ -173,14 +178,26 @@ exports.findUser = (email, password) => {
     })
 }
 
-exports.delete = (tablename,filed,value)=>{
+/**
+ * @description 通过字段的值删除表的一条信息
+ * @param {*} tablename 表名
+ * @param {*} field 字段名
+ * @param {*} value 字段值
+ */
+exports.delete = (tablename,field,value)=>{
     return new Promise((resolve,reject)=>{
-        connection.query(`delete from ${tablename} where ${filed}="${value}"`, (error, results, fields) => {
+        connection.query(`delete from ${tablename} where ${field}="${value}"`, (error, results, fields) => {
             if (error) {
                 reject(error);
             } else {
                 resolve(results);
             }
         })
+    })
+}
+
+exports.addField = (tablename,alterField,alterValue,field,fieldValue)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(``)
     })
 }

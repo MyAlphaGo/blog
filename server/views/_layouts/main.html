@@ -11,22 +11,25 @@
         ul {
             list-style: none;
         }
+
         li {
             margin-bottom: 10px;
         }
 
         .left {
             height: 500px;
-            width: 200px;
-            position: absolute;
-            top: 100px;
-            left: 10%;
+            width: 18%;
+            float: left;
+            background-color: skyblue;
+            padding: 0;
+            margin: 0;
         }
 
         .main {
+            padding: 0;
             height: 1000px;
-            width: 800px;
-            margin-left: calc(10% + 250px)
+            width: 80%;
+            margin-left: calc(10% + 100px)
         }
     </style>
     {{block 'head'}}{{/block}}
@@ -35,14 +38,16 @@
 <body>
     {{include '../_partials/header.html'}}
     {{block 'body'}}
-    <div class="left">
-        <ul>
-            <li><a href="/home/add">添加文章</a></li>
-            <li><a href="/home/show">全部文章</a></li>
-        </ul>
-    </div>
-    <div class="main">
-        {{block 'main'}}{{/block}}
+    <div class="container">
+        <div class="left">
+            <ul>
+                <li><a href="/home/add">添加文章</a></li>
+                <li><a href="/home/show">全部文章</a></li>
+            </ul>
+        </div>
+        <div class="main">
+            {{block 'main'}}{{/block}}
+        </div>
     </div>
     {{/block}}
     {{include '../_partials/footer.html'}}

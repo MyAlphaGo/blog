@@ -26,23 +26,32 @@
             </div>
             <!-- 手机导航栏 -->
             <div class="nav-left-phone">
-                <div class="nav-all">
-                    <a href="/">
-                        <span class="mui-icon mui-icon-home"></span>
-                    </a>
-
-                </div>
+                <navmenu></navmenu>
                 <span>博客列表</span>
-                <div class="tag mui-icon mui-icon-list" @click="promp()"></div>
-                <div class="hiddendemo"></div>
+                <div class="tag mui-icon mui-icon-list" @click="changeFlag"></div>
+                <!-- 隐藏区域 -->
+                <transition name="cover1">
+                    <div class="cover" :style="screenHeight" v-show="tag_flag" @click.self="changeFlag">
+                        <transition name="tag">
+                            <div class="hiddendemo" :style="screenHeight" v-show="tag_flag">
+                                <h3>Tags</h3>
+                                <div class="line container-fluid"></div>
+                                <!-- <span class="triangle"></span> -->
+                                <span v-for="(item,i) in list_1abel" class="label hover label-tag" :style="item.bgc"
+                                    @click="getdataByTagName(item.text)" :key="i+'c'">{{item.text}}</span>
+                            </div>
+                        </transition>
+                    </div>
+                </transition>
             </div>
+
             <!-- 主体内容 -->
             <!-- <div class="main"> -->
 
-            <div v-if="!list.length" :key="-2" class="main">没有文章</div>
-            <div v-else :key="-1">
+            <div v-if="!list.length" class="main">没有文章</div>
+            <div v-else>
                 <transition-group appear tag="div" class="main">
-                    <section v-for="(item, i) in list" :key="i">
+                    <section v-for="(item, i) in list" :key="item.id">
                         <div class="box">
                             <h2>
                                 <!--  http://127.0.0.1:3000/show?id=1 -->
@@ -82,16 +91,18 @@
 
 <script>
     import { Toast } from 'mint-ui';
+    import navmenu from '../component/menu.vue';
     export default {
         mounted() {
-
+            this.getHeight();
         },
         created() {
             this.getdata();
         },
         data() {
             return {
-                flag: false,
+                tag_flag: false,
+                screenHeight: { height: '' },
                 list_1abel: [
                     { bgc: { 'background-color': '#87ceeb' }, text: 'javascript' },
                     { bgc: { 'background-color': '#db5640' }, text: 'Vue' },
@@ -105,6 +116,9 @@
 
                 ]
             }
+        },
+        components: {
+            navmenu
         },
         methods: {
             getdata() {
@@ -158,18 +172,20 @@
                     newlabel = [];
                 }
             },
-            promp() {
-                Toast({
-                    message: "暂时还没有做 o(^_^)o",
-                    position: 'top',
-                    duration: 2000
-                })
+            getHeight() {
+                // window.onresize = () => {
+                this.screenHeight.height = document.body.clientHeight + "px";
+                // }
+            },
+            changeFlag() {
+                this.tag_flag = !this.tag_flag;
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
+    /* 动画过渡 */
     .v-enter,
     .v-leave-to {
         -webkit-transform-origin: center;
@@ -191,6 +207,46 @@
 
     .v-leave-active {
         position: absolute;
+    }
+
+    .cover1-enter-active {
+        animation: In .5s;
+    }
+
+    .cover1-leave-active {
+        animation: In .5s reverse;
+    }
+
+    .tag-enter-active {
+        animation: fadeInRight .5s;
+    }
+
+    .tag-leave-active {
+        animation: fadeInRight .5s reverse;
+    }
+
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes In {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
     /* 列表动画结束 */
@@ -228,6 +284,7 @@
                 text-align: center;
                 position: fixed;
                 top: 0;
+                /* z-index: 0; */
 
                 .nav-all {
                     line-height: 80px;
@@ -239,6 +296,12 @@
                         font-size: 30px;
                     }
                 }
+
+                /* .triangle {
+                    border-top: 1px solid #000;
+                    border-left: 1px solid #000;
+
+                } */
 
                 span {
                     line-height: 80px;
@@ -254,11 +317,44 @@
                     font-size: 45px;
                 }
 
+                .hiddendemo {
+                    width: 70%;
+                    background-color: hsla(0, 0%, 100%, .8);
+                    float: right;
+                    color: #c1866a;
+                    /* margin-top: 80px; */
+                    z-index: 1;
+
+                    h3 {
+                        margin: 20px 0;
+                        color: inherit;
+                    }
+
+                    .line {
+                        width: 90%;
+                        color: inherit;
+                        margin: 0 auto;
+                        border-top: 1px solid #c1866a;
+                        margin-bottom: 20px;
+                    }
+                    .label-tag {
+                        margin: 10px;
+                        line-height: 15px;
+                        display: inline-block;
+                        height: 20px;
+                        color: #fff
+                    }
+                }
+
+                .cover {
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+
 
             }
-
-
-
             .main {
                 width: 100%;
                 min-height: 555px;
